@@ -39,7 +39,7 @@
                                         <div class="text-sm text-gray-900">{{ $article->title }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $article->author }}</div>
+                                        <div class="text-sm text-gray-900">{{ $article->user->name }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         <a href="{{ route('articles.show', $article) }}" class="text-indigo-600 hover:text-indigo-900">Voir</a>
@@ -47,7 +47,7 @@
                                         <form action="{{ route('articles.destroy', $article) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Supprimer</button>
+                                            <button type="submit" onclick="return confirm('are you sure ?')" class="text-red-600 hover:text-red-900 ml-2">Supprimer</button>
                                         </form>
                                     </td>
                                 </tr>

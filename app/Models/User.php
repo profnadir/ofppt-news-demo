@@ -47,5 +47,7 @@ class User extends Authenticatable
         return $this->hasOne(Carte::class);
     }
 
-
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
 }
