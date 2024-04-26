@@ -37,6 +37,26 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+        /**
+     * Update the user's profile information.
+     */
+    public function updateCarte(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'numero' => 'required',
+            'ville' => 'required',
+        ]);
+        if($request->user()->carte){
+            $request->user()->carte()->update($validated);
+        }else{
+            $request->user()->carte()->create($validated);
+        }
+
+        //$request->user()->carte()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'carte-updated');
+    }
+
     /**
      * Delete the user's account.
      */
