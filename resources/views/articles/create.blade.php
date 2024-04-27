@@ -37,6 +37,17 @@
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Catégories:</label>
+                            @foreach($categories as $category)
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-checkbox h-5 w-5 text-blue-500" {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}><span class="ml-2 text-gray-700">{{ $category->name }}</span>
+                                </label>
+                            @endforeach
+                            @error('categories')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Créer l'article</button>
                     </form>
                 </div>
