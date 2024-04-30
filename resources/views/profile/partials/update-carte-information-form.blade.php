@@ -24,9 +24,14 @@
         </div>
         <div>
             <x-input-label for="ville" :value="__('Ville')" />
-            <x-text-input id="ville" name="ville" type="text" class="mt-1 block w-full" :value="old('ville', optional($user->carte)->ville)" required autofocus />
+            <select id="ville_id" name="ville_id" class="mt-1 block w-full" required>
+                @foreach($villes as $ville)
+                    <option value="{{ $ville->id }}" @if(old('ville_id', optional($user->ville)->id) == $ville->id) selected @endif>{{ $ville->name }}</option>
+                @endforeach
+            </select>
             <x-input-error class="mt-2" :messages="$errors->get('ville')" />
         </div>
+        
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

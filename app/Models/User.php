@@ -47,6 +47,10 @@ class User extends Authenticatable
         return $this->hasOne(Carte::class);
     }
 
+    public function ville(){
+        return $this->hasOneThrough(Ville::class,Carte::class,'user_id','id','id','ville_id');
+    }
+
     public function articles(){
         return $this->hasMany(Article::class);
     }
