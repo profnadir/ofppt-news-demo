@@ -38,9 +38,19 @@ class ArticleController extends Controller
             'title' =>'required',
             'content' =>'required',
             'categories' => 'array', 
+            'url' => 'url'
         ]);
 
         $article = $request->user()->articles()->create($validated);
+
+        if ($request->has('url')) {
+            $article->image()->create(
+                [
+                    'url' => 'https://picsum.photos/id/'.$article->id.'/200/300'
+                ]
+            );
+        }
+       
 
         $article->categories()->attach($validated['categories']);
 

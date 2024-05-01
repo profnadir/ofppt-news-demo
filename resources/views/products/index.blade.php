@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Liste des articles') }}
+            {{ __('Liste des products') }}
         </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
                         Articles
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('articles.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Nouveau</a>
+                        <a href="{{ route('products.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Nouveau</a>
                     </div>
                 </div>
 
@@ -28,7 +28,7 @@
                                     Image
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Auteur
+                                    Price
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
@@ -36,21 +36,21 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($articles as $article)
+                            @foreach ($products as $product)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $article->title }}</div>
+                                        <div class="text-sm text-gray-900">{{ $product->title }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <img src="{{ optional($article->image)->url }}" alt="Article Image" style="width: 50px; height: 50px;" class="h-10 w-10 rounded-full">
+                                        <img src="{{ optional($product->image)->url }}" alt="Article Image" style="width: 50px; height: 50px;" class="h-10 w-10 rounded-full">
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $article->user->name }}</div>
+                                        <div class="text-sm text-gray-900">{{ $product->price }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <a href="{{ route('articles.show', $article) }}" class="text-indigo-600 hover:text-indigo-900">Voir</a>
-                                        <a href="{{ route('articles.edit', $article) }}" class="text-indigo-600 hover:text-indigo-900 ml-2">Modifier</a>
-                                        <form action="{{ route('articles.destroy', $article) }}" method="POST" class="inline">
+                                        <a href="{{ route('products.show', $product) }}" class="text-indigo-600 hover:text-indigo-900">Voir</a>
+                                        <a href="{{ route('products.edit', $product) }}" class="text-indigo-600 hover:text-indigo-900 ml-2">Modifier</a>
+                                        <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('are you sure ?')" class="text-red-600 hover:text-red-900 ml-2">Supprimer</button>

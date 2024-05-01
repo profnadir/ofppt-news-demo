@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Créer un nouvel article') }}
+            {{ __('Créer un nouvel produit') }}
         </h2>
     </x-slot>
 
@@ -21,7 +21,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('articles.store') }}" method="POST">
+                    <form action="{{ route('products.store') }}" method="POST">
                         @csrf
                         <div class="mb-4">
                             <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Titre:</label>
@@ -31,9 +31,16 @@
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Contenu:</label>
-                            <textarea name="content" id="content" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ old('content') }}</textarea>
-                            @error('content')
+                            <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Prix:</label>
+                            <input type="text" name="price" id="price" value="{{ old('price') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            @error('price')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
+                            <textarea name="description" id="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ old('description') }}</textarea>
+                            @error('description')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -44,18 +51,7 @@
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">Catégories:</label>
-                            @foreach($categories as $category)
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-checkbox h-5 w-5 text-blue-500" {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}><span class="ml-2 text-gray-700">{{ $category->name }}</span>
-                                </label>
-                            @endforeach
-                            @error('categories')
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Créer l'article</button>
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Créer le produit</button>
                     </form>
                 </div>
             </div>
