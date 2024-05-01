@@ -20,10 +20,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/articles/comments', function () {
+    return view('articles.comments',[
+        'comments' => auth()->user()->commments
+    ]);
+})->middleware(['auth', 'verified'])->name('articles.comments');
+
 Route::resource('/articles', ArticleController::class)->middleware('auth');
 //Route::resource('/comments', CommentController::class)->middleware('auth');
 Route::post('/articles/{article}/comments', [CommentController::class,'store'])
     ->name('comments.store')->middleware('auth');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
