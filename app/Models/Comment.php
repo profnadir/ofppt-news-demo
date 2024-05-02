@@ -12,10 +12,9 @@ class Comment extends Model
     protected $fillable = [
         'content',
         'author',
-        'article_id',
     ];
 
-    public function article(){
-        return $this->belongsTo(Article::class);
+    public function commentable(){
+        return $this->morphTo();
     }
 }

@@ -29,8 +29,8 @@ Route::get('/articles/comments', function () {
 
 Route::resource('/articles', ArticleController::class)->middleware('auth');
 //Route::resource('/comments', CommentController::class)->middleware('auth');
-Route::post('/articles/{article}/comments', [CommentController::class,'store'])
-    ->name('comments.store')->middleware('auth');
+Route::post('/articles/{article}/comments', [CommentController::class,'storeForArticle'])->name('articles.comments.store')->middleware('auth');
+Route::post('/products/{product}/comments', [CommentController::class,'storeForProduct'])->name('products.comments.store')->middleware('auth');
 
 Route::resource('/products', ProductController::class)->middleware('auth');
 

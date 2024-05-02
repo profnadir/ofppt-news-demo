@@ -18,4 +18,8 @@ class Product extends Model
     public function image(){
         return $this->morphOne(Image::class,'imageable');
     }
+
+    public function comments(){
+        return $this->morphMany(Comment::class,'commentable');
+    }
 }

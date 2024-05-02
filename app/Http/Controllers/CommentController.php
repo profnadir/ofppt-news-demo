@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Comment;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -27,7 +28,7 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Article $article, Request $request)
+    public function storeForArticle(Article $article, Request $request)
     {
         $validated = $request->validate([
             'content' =>'required',
@@ -40,6 +41,18 @@ class CommentController extends Controller
         $comment = $article->comments()->create($validated);
 
         return redirect()->route('articles.show', $article)->with('success', 'Comment created successfully');
+    }
+
+    public function storeForProduct(Product $product, Request $request)
+    {
+        $validated = $request->validate([
+            'content' =>'required',
+            'author' =>'required',
+        ]);
+
+        $comment = $product->comments()->create($validated);
+
+        return redirect()->route('products.show', $product)->with('success', 'Comment created successfully');
     }
 
     /**
