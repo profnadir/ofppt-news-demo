@@ -13,7 +13,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::with(['image','user'])->get();
         // $articles = Article::get();
         // $articles = Article::orderBy('title')->take(5)->get();
         // $articles = Article::paginate(10);
