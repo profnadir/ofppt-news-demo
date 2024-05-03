@@ -24,7 +24,7 @@ class Article extends Model
     }
 
     public function categories(){
-        return $this->belongsToMany(Categorie::class);
+        return $this->morphToMany(Categorie::class,'categorieable');
     }
 
     public function image(){

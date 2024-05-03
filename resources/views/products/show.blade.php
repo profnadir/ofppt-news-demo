@@ -12,6 +12,12 @@
                     <h2 class="text-xl font-bold">{{ $product->title }}</h2>
                     <p class="text-gray-700 mt-2">{{ $product->description }}</p>
                     <p class="mt-4 text-gray-500">Prix: {{ $product->price }}</p>
+                    <div class="mt-4">
+                        <span class="text-gray-500">Catégories:</span>
+                        @foreach($product->categories as $category)
+                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $category->name }}</span>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

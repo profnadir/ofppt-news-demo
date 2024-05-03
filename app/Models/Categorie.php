@@ -15,6 +15,10 @@ class Categorie extends Model
     ];
 
     public function articles(){
-        return $this->belongsToMany(Article::class);
+        return $this->morphedByMany(Article::class,'categorieable');
+    }
+
+    public function products(){
+        return $this->morphedByMany(Product::class,'categorieable');
     }
 }
